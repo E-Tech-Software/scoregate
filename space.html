@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>School Dashboard</title>
+
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <style>
+    :root{
+      --color: #212529;
+      --buttonColor: purple;
+    }
+    .addStudentForm{
+    
+    }
+    .addStudentForm h3{
+      background-color: #212529;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      width: 80%;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);;
+     
+    }
+    .h3{
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .input{
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+    }
+    .form{
+      padding: 0px 0.5rem;
+      border-radius: 5px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+     margin-bottom: 20px;
+    }
+    .formBody{
+      display: flex;
+      flex-direction: column;
+    }
+    .input input{
+      margin-bottom: 10px;
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.7rem;
+      border: 1px solid grey;
+      border-radius: 5px;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0);
+    }
+    .input select{
+            margin-bottom: 10px;
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.7rem;
+      border: 1px solid grey;
+      border-radius: 5px;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0);
+    }
+    .input label{
+      font-weight: 400;
+      padding-left: 10px;
+      font-size: 1rem;
+      padding-bottom: 2px;
+    }
+    .submitBtn{
+      padding: 0px 0.5rem ;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .submitBtn button,
+    .process{
+      background-color: purple;
+      padding: 10px 5rem;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+    }
+    .process{
+      padding: 10px 3rem;
+      margin-top: 5px;
+    }
+    .submitBtn span{
+      border: 5px solid white;
+      border-radius: 50%;
+      padding: 15px;
+      border-top: 5px solid purple;
+      animation: load 0.5s infinite linear;
+      scale: 0;
+      transition: 0.5s;
+    }
+    @keyframes load {
+    to { 
+      transform: rotate(360deg);
+    }
+    }
+    .searchBar select,
+    .addSingle select{
+      padding: 10px 20px;
+      border-radius: 5px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .subject{
+      padding: 10px 20px;
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid grey;
+      margin: 10px 0;
+    }
+    .setup{
+      margin-top: 10px;
+    }
+    .searchBar{
+      margin-top: 10px;
+    }
+    .searchBar select:first-child,
+    .addSingle select:first-child{
+      margin-right: 10px;
+    }
+    table{
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 1rem;
+      
+    }
+    .table{
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+    tr{
+      border-bottom: 1px solid grey;
+    }
+    td,th{
+      text-align: center;
+      padding: 5px;
+    }
+    .table button{
+      padding: 5px;
+      width: 100%;
+      font-size: 1.2rem;
+      color: white;
+      background-color: purple;
+      outline: none;
+      border: none;
+      border-radius: 5px;
+    }
+    td:nth-child(3),
+    th:nth-child(3){
+      text-align: left;
+      padding-left: 20px;
+
+    }
+    .singleContainer{
+      width: 90%;
+      padding: 2rem 1rem;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      
+    }
+    .addresultContainer{
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    }
+    .singleContainer h2{
+      margin-bottom: 30px;
+      color: var(--color);
+    
+    }
+    .singleContainer button{
+      background-color: var(--color);
+      padding: 5px 20px;
+      border: none;
+      border-radius: 3px;
+      font-size: 1rem;
+      color: white;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .singleContainer button:first-child{
+      margin-right: 10px;
+    }
+    .nameSelect {
+      margin-top: 10px;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .addSingle p{
+      margin: 5px 0px;
+      font-size: 0.8rem;
+    }
+    .scoreBox{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+      margin-top: 5px;
+    }
+    .scoreBox input{
+      margin: 5px 0px;
+      padding: 10px;
+      width: 100%;
+      text-indent: 2px;
+      font-size: 1.2rem;
+      outline: none;
+      width: 90%;
+    }
+    #studentName{
+       margin: 5px 0px;
+      padding: 10px;
+      width: 100%;
+      text-indent: 2px;
+      font-size: 1.2rem;
+      outline: none;
+      max-width: 90%;
+    }
+    #img{
+      width: 50px;
+      height: 50px;
+    }
+    .user{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
+
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">🏅 Score Gate</div>
+
+    <ul class="menu" id="menu"></ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <i class="fas fa-bars" id="toggleBtn"></i>
+      <div class="user">
+        <span id="userRole">Admin</span>
+        <img id="img" src="https://i.pravatar.cc/40" />
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <section class="content">
+        
+      <!-- STATS -->
+      <div class="stats" id="stats">
+         
+      </div>
+
+      <!-- CHART -->
+      <div class="card">
+            <div class="addSingle">
+          <div class="classSelect">
+            <select name="" id="stuClass">
+              <option >JSS 1</option>
+            </select>
+            <select name="" id="session">
+              <option>A</option>
+            </select>
+            <div class="setup">
+                <input type="text" placeholder="Enter Subject" class="subject">
+                <input id="totalStudent" type="number" placeholder="Enter No Of students" class="subject">
+                <button class="process">Process</button>
+            </div>
+            
+          </div>
+              <div class="append">
+
+              </div>
+
+        </div>
+      </div>
+      </div>
+      <template id="template">
+          <div class="studentScoreContainer">
+          <input id="studentName" type="text" placeholder="Enter Student Name">
+          <div class="scoreBox">
+            <input id="firstAss" type="number" placeholder="1st Ass">
+            <input id="secondAss" type="number" placeholder="2nd Ass">
+            <input id="firstTest" type="number" placeholder="1st Test">
+            <input id="secondTest" type="number" placeholder="2nd Test">
+            <input id="exams" type="number" placeholder="Exams">
+          </div>
+          </div>
+      </template>
+      <template class="btn">
+        <div class="submitBtn">
+                <button>Submit</button>
+                <span id=""></span>
+          </div>
+      </template>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/dashboard.js"></script>
+<script type="module">
+  import {updateData} from "./backend.js"
+  var user = JSON.parse(localStorage.getItem("data"));
+    var processBtn = document.querySelector(".process")
+    var temBody = document.querySelector(".append");
+    var card = document.querySelector(".card")
+    var img = document.querySelector("#img")
+    // var caSheet = document.querySelector()
+    // var plan = document.querySelector()
+    var userName = document.querySelector("#userRole");
+    img.src = user.profilePicture
+    userName.textContent = user.username
+    processBtn.addEventListener("click", ()=>{
+      if(user.casheet < 1){
+        alert("No avaialable plan")
+        return
+      }
+      temBody.innerHTML = ""
+      var totalNoOfStudent = document.querySelector("#totalStudent").value;
+       for(let i = 0 ; i < totalNoOfStudent; i++){
+         var template = document.querySelector("#template");
+         var clone = template.content.cloneNode(true);
+         clone.querySelector("#studentName").value = "Student " + (i+1)
+         temBody.appendChild(clone) 
+       }
+       var div = document.createElement("div")
+       div.innerHTML = ""
+          div.classList.add("submitBtn")
+       var btn = document.createElement("button");
+        btn.textContent = "Submit"
+        var span = document.createElement("span")
+        span.id = "loadSpan"
+          div.appendChild(btn)
+          div.appendChild(span)
+          temBody.appendChild(div)
+
+      btn.addEventListener("click", ()=>{
+         btn.disabled = true;
+          var loadSpan = document.querySelector("#loadSpan");
+          var sub = document.querySelector(".subject").value;
+          var stuClass = document.querySelector("#stuClass").value;
+          var stuSession = document.querySelector("#session").value;
+           loadSpan.style.scale = "1"
+           var students = []
+      var classItems = document.querySelectorAll(".studentScoreContainer")
+           classItems.forEach((item)=>{
+            var studentName = item.querySelector("#studentName").value;
+            var ass1 = Number(item.querySelector("#firstAss").value);
+            var ass2 = Number(item.querySelector("#secondAss").value);
+            var test1 = Number(item.querySelector("#firstTest").value);
+            var test2 = Number(item.querySelector("#secondTest").value);
+            var exams = Number(item.querySelector("#exams").value);
+            var total = Number(ass1 + ass2 + test1 + test2 + exams)
+            var array = [studentName,ass1,ass2,test1,test2,exams,total]
+            students.push(array);
+              
+           })
+           var totalScore = 0
+           var average = 0
+          var sorted = sorthData([...students])
+           sorted.forEach((sort,index)=>{
+              sort.push(getPositionString(index+1))
+           })
+          sorted.forEach((item)=>{
+             totalScore += item[6]
+            students.forEach((stu)=>{
+              if(item[0] == stu[0]){
+                stu[7] = item[7]
+              }
+            })
+          })
+          average = totalScore/Number(totalNoOfStudent)
+          loadJspdf({
+            data : students,
+            classScore : totalScore,
+            subjectAverage : average,
+            totalStudents : totalNoOfStudent,
+            subject : sub,
+            session : stuSession,
+            stuClass : stuClass,
+            subjectMark: 100,
+            obtainableMark : Number(totalNoOfStudent) * 100,
+            passMark : Number(totalNoOfStudent) * 100 / 2,
+          })
+
+      })
+      
+    })
+
+    function sorthData(data){
+      data.sort((a, b) => b[6] - a[6]);
+      return data
+    }
+
+function getPositionString(pos) {
+  let suffix = "th";
+  if (pos % 10 === 1 && pos % 100 !== 11) suffix = "st";
+  else if (pos % 10 === 2 && pos % 100 !== 12) suffix = "nd";
+  else if (pos % 10 === 3 && pos % 100 !== 13) suffix = "rd";
+  return pos + suffix;
+}
+
+function loadJspdf(data){
+  var remark;
+  if(data.classScore < data.passMark){
+    remark = "Below Average"
+  }else{
+    remark = "Good Performance"
+  }
+  var body = [["Subject Mark",data.subjectMark,"Subject Total Mark", data.obtainableMark],
+  ["Subject Pass Mark",data.passMark,"Performance",remark]
+  ]
+
+                const {jsPDF} = window.jspdf;
+                var docsPdf = new jsPDF();
+  var pageWidth = docsPdf.internal.pageSize.getWidth();
+            // Schoo header title text
+            docsPdf.setFontSize(25);
+            var schoolHead = "SCORE GATE"
+            var textWidth = docsPdf.getTextWidth(schoolHead);
+            var xPosition = (pageWidth-textWidth)/2;
+            docsPdf.text(xPosition,15,schoolHead);
+            // school address text
+            docsPdf.setFontSize(12);
+            var schoolAddress = "Elim camp Rukuba Road Jos Plateau state Nigeria"
+             var textWidthAddress = docsPdf.getTextWidth(schoolAddress);
+             var xPositionAddress = (pageWidth-textWidthAddress)/2;
+            docsPdf.text(xPositionAddress,22,schoolAddress)
+            // school email address 
+
+            docsPdf.setFontSize(10);
+            var emaiAddress = "e-tech-software.github.io/scoregate. 08147-309-259"
+             var emaiWidthAddress = docsPdf.getTextWidth(emaiAddress);
+             var xPositionEmailAddress = (pageWidth-emaiWidthAddress)/2;
+            docsPdf.text(xPositionEmailAddress,28,emaiAddress)
+
+            //student display details
+            docsPdf.setFontSize(12);
+            // student total score display.
+            var studentTotalScore = "Class Score:   " + data.classScore
+            var studentTotalScoreWidth = docsPdf.getTextWidth(studentTotalScore)
+            var studentTotalScoreWidthPos = 20;
+            docsPdf.text(studentTotalScoreWidthPos,42,studentTotalScore)
+
+            // student average score display.
+            var studentAverageScore = "Subject Average:   "  + data.subjectAverage
+            var studentAverageScoreWidth = docsPdf.getTextWidth(studentAverageScore)
+            var studentAverageScoreWidthPos = 80;
+            docsPdf.text(studentAverageScoreWidthPos,42,studentAverageScore);
+
+            //student class display
+            var studentClass = "Subject:   "  + data.subject
+            var studentClassScoreWidth = docsPdf.getTextWidth(studentClass)
+            var studentClassWidthPos = 130;
+            docsPdf.text(studentTotalScoreWidthPos,35,studentClass);
+
+            //student class display
+            var studentClass = "Class:   " + data.stuClass + data.session
+            var studentClassScoreWidth = docsPdf.getTextWidth(studentClass)
+            var studentClassWidthPos = 80;
+            docsPdf.text(studentClassWidthPos,35,studentClass);
+            
+            // Registered subject display
+            var regSub = "Total Student:   " + data.totalStudents
+            var studentRegSubWidth = docsPdf.getTextWidth(regSub)
+            var studentRegSubWidthPos = 140;
+            docsPdf.text(studentRegSubWidthPos,42,regSub);
+
+
+                docsPdf.autoTable({
+                head: [["Student","Ass 1","Ass 2","Test 1","Test 2","Exams","Total","Position"]],
+                body: data.data,
+                theme: 'grid',
+                startY: 50,
+                cellPadding:20,
+
+            });
+
+      var finalY = docsPdf.lastAutoTable.finalY;
+
+      docsPdf.autoTable({
+        head: [["Keys","Values","Keys","Values"]],
+        body : body,
+        startY: finalY + 10 ,
+      })
+           
+            var newCaSheet = user.casheet - 1
+            sendData()
+            
+      async function sendData(){
+       var respons = await updateData(newCaSheet,user.googleId)
+        if(respons == "successful"){
+           docsPdf.save('result.pdf');
+        }
+      }
+          
+}
+
+
+    
+</script>
+</body>
+</html>
+          

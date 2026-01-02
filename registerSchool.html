@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+        body{
+            overflow-x: hidden;
+        }
+    .registerForm{
+        display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+        justify-content: center;
+        width: 100%;
+        overflow-x:hidden;
+        
+        
+    }
+    .bod{
+        margin: 50px 10px;
+        background-color: beige;
+        padding: 3rem 2rem;
+        border-radius: 10px;
+    }
+    .segment{
+        display: flex;
+        flex-direction: column;
+        margin-top:1.2rem ;
+    }
+    .bod input,
+    textarea,
+    select{
+        border: 1px solid grey;
+        border-radius: 5px;
+        padding: 10px 20px;
+        outline: none;
+        margin: 0px 10px;
+    }
+    .head{
+        text-align: center;
+    }
+    .button{
+        display: flex;
+        margin: 20px 0;
+        align-items: center;
+        gap:10px;
+    }
+    .button button{
+        padding: 0.5rem 2.5rem;
+        font-size: 1.2rem;
+        background-color: purple;
+        color: white;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+    }
+    .button span{
+        border-top: 5px dotted purple;
+        border-radius: 50%;
+        padding: 15px;
+        animation: animate 0.5s linear infinite;
+        scale: 0;
+    }
+    .layer{
+                display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    }
+    .pinfor{
+        margin-top: 10px;
+        color: purple;
+    }
+    .head h2{
+        width: 100%;
+        background-color: purple;
+        color: white;
+        align-self: center;
+        text-align: center;
+        padding: 0.5rem 0;
+        border-radius: 5px;
+    }
+    @keyframes animate {
+        to{
+            transform: rotate(360deg);
+        }
+    }
+    .scale{
+        scale: 1;
+    }
+    
+    </style>
+    <div class="registerForm">
+        <div class="bod">
+            <div class="head">
+            <h2>Register Your School</h2>
+        </div>
+        <div class="body">
+            <div class="layer">
+                        <div class="segment">
+                        <label for="">School Logo</label>
+                        <input type="file" accept=".png" required id="logo">
+                    </div>
+                    <div class="segment">
+                        <label for="">School Name</label>
+                        <input id="schoolName" type="text" required placeholder="Enter School Name">
+                    </div>
+                    <div class="segment">
+                        <label for="">Email</label>
+                        <input id="schoolEmail" type="email" required placeholder="Enter School Email">
+                    </div>
+            </div>
+             <div class="layer">
+                            <div class="segment">
+                            <label for="">School Contact</label>
+                            <input id="schoolContact" type="number" required placeholder="Enter School Contact" >
+                        </div>
+                        <div class="segment">
+                            <label for="">School Motto:</label>
+                            <input id="schoolMotto" type="text" required placeholder="Enter school motto">
+                        </div>
+                        <div class="segment">
+                            <label for="">Address</label>
+                            <textarea name="" id="schoolAddress" placeholder="Enter School Address"></textarea>
+                            
+                        </div>
+
+            </div>
+            <h3 class="pinfor">Personal Infor</h3>
+             <div class="layer">
+                            <div class="segment">
+                            <label for="">Name</label>
+                            <input id="staffName" type="text" required placeholder="Enter Your Name" >
+                        </div>
+                        <div class="segment">
+                            <label for="">Contact</label>
+                            <input id="staffContac" type="number" required placeholder="Enter Your Contact Address" >
+                        </div>
+                        <div class="segment">
+                            <label for="">Email</label>
+                            <input  type="email" name="" id="staffEmail" required placeholder="Enter Your Email">
+                            
+                        </div>
+
+            </div>
+             <div class="layer">
+                            <div class="segment">
+                            <label for="">Position</label>
+                            <select name="" id="staffRole">
+                                <option >Proprie(tor)/(tress)</option>
+                                <option >School Admin</option>
+                                <option>School Teacher</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="segment">
+                            <label for="">Admission</label>
+                            <input id="addimtDate" type="date" >
+                        </div>
+                        <div class="segment">
+                            <label for="">Address</label>
+                            <textarea name="" id="staffAddress" placeholder="Resident Address"></textarea>
+                            
+                        </div>
+
+            </div>
+            
+                        <div class="button">
+                            <button id="registerbtn">Register</button>
+                            <span id="span"></span>
+                        </div>
+            
+        </div>
+        </div>
+        
+    </div>
+    <script type="module">
+        import {send} from "./bucketSetUp.js"
+        function verifyInput(){
+            var schoolLogo = document.querySelector("#logo").files[0]
+            var schoolName = document.querySelector("#schoolName").value
+            var schoolEmail = document.querySelector("#schoolEmail").value
+            var schoolContact = document.querySelector("#schoolContact").value
+            var schoolMotto = document.querySelector("#schoolMotto").value
+            var schoolAddress = document.querySelector("#schoolAddress").value
+            var staffName = document.querySelector("#staffName").value
+            var staffContact = document.querySelector("#staffContac").value
+            var staffEmail = document.querySelector("#staffEmail").value
+            var staffRole = document.querySelector("#staffRole").value
+            var staffAddress = document.querySelector("#staffAddress").value
+            var staffAdmit = document.querySelector("#addimtDate").value
+            if(schoolName | schoolEmail | schoolContact ||schoolMotto || schoolAddress
+                || staffName || staffContact || staffEmail || staffRole || staffAddress || staffAdmit
+                !== ""
+            ) {
+                 var schoolInfor =  {
+                logo : schoolLogo,
+                schoolName : schoolName,
+                schoolEmail : schoolEmail,
+                schoolContact : schoolContact,
+                schoolMotto : schoolMotto,
+                schoolAddress : schoolAddress,
+            }
+
+            var staffInfor = {
+                staffName : staffName,
+                staffContac : staffContact,
+                staffEmail : staffEmail, 
+                staffRole : staffRole, 
+                staffAddress : staffAddress, 
+                staffAdmit : staffAdmit
+            }
+            return {
+                school : schoolInfor,
+                staff : staffInfor
+            }
+             
+            }
+            
+           return null
+            
+            
+        }
+        document.querySelector("#registerbtn").addEventListener("click",()=>{
+            var btn = document.querySelector("#registerbtn");
+            btn.disabled = true
+            var span = document.querySelector("#span");
+            span.style.scale = "1"
+           var data =  verifyInput()
+            if(data === null){
+                alert("Please all fields are required")
+            }else{
+                // call firebase and appwrite to store both image and data
+                async function reg(){
+                    
+                    var logoUrl = await send(data.school.logo)
+                }
+                reg()
+            }
+            
+        })
+    </script>
+</body>
+</html>

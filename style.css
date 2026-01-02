@@ -1,0 +1,244 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f9fafb;
+  color: #111827;
+}
+
+/* NAVBAR */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 6%;
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.logo span {
+  color: #10b981;
+}
+
+.btn-outline {
+  padding: 10px 20px;
+  border: 2px solid #1e40af;
+  background: transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+/* HERO */
+.hero {
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  align-items: center;
+  gap: 40px;
+  padding: 60px 6%;
+  background: linear-gradient(rgba(10,37,64,0.7),rgba(30,64,175,0.7)),url(img/bookkeeper-home-office-reading-reports-laptop-taking-notes.jpg);
+  color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.hero h2 {
+  font-size: 48px;
+  line-height: 1.2;
+}
+
+.hero h2 span {
+  color: #10b981;
+}
+
+.hero p {
+  margin: 20px 0;
+  max-width: 500px;
+  opacity: 0.9;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 14px 30px;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.hero-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.hero-card ul {
+  list-style: none;
+  margin-top: 15px;
+}
+
+.hero-card li {
+  margin-bottom: 10px;
+}
+
+/* FEATURES */
+.features {
+  padding: 80px 6%;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.feature-card span {
+  font-size: 40px;
+}
+
+.feature-card h3 {
+  margin: 15px 0;
+}
+
+/* CTA */
+.cta {
+  padding: 80px 6%;
+  background: linear-gradient(135deg, #10b981, #1e40af);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 30px;
+ 
+}
+
+.cta h2 {
+  font-size: 40px;
+}
+
+.cta p {
+  margin: 15px 0 30px;
+}
+
+.btn-primary.large {
+  font-size: 18px;
+  padding: 16px 40px;
+}
+
+/* FOOTER */
+footer {
+  padding: 30px;
+  text-align: center;
+  background: #0a2540;
+  color: #e5e7eb;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h2 {
+    font-size: 34px;
+  }
+}
+.power{
+   font-size: 12px;
+   margin-top: 20px;
+}
+
+/* STATS SECTION */
+.stats {
+  padding: 80px 6%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 30px;
+  background: linear-gradient(135deg, #0a2540, #1e40af);
+  text-align: center;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  padding: 40px 20px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+}
+
+.stat-card h3 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  opacity: 0.9;
+  font-size: 15px;
+}
+.img_section{
+    height: 150%;
+    background: url(img/copy.jpg);
+    color: white;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    margin-top: -50px;
+    border-radius: 10px;
+    
+}
+.text_section{
+    text-align: center;
+}

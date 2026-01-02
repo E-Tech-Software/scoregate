@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <style>
+    .body{
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+<div class="body">
+  <h2>Sign in with Google</h2>
+
+  <div id="g_id_onload"
+       data-client_id="855081944674-s8ivuec45t2pab5nua6ao8rantd033uq.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse">
+  </div>
+
+  <div class="g_id_signin"
+       data-type="standard"
+       data-size="large">
+  </div>
+</div>
+<script>
+  function handleCredentialResponse(response) {
+    const token = response.credential;
+    const userData = JSON.parse(atob(token.split('.')[1]));
+
+    const user = {
+      username: userData.name,
+      email: userData.email,
+      profilePicture: userData.picture,
+      googleId: userData.sub,
+      plan: "Freemium",
+      casheet: 2
+    };
+
+    window.loadData(user);
+  }
+</script>
+
+<script type="module">
+  import { checkaccount } from "./backend.js";
+
+   window.loadData = async function(data) {
+    try {
+      const response = await checkaccount(data);
+      localStorage.setItem("data", JSON.stringify(response));
+       window.location.href = "./space.html";
+    } catch (error) {
+      alert(error);
+    }
+  }
+</script>
+
+
+</body>
+</html>

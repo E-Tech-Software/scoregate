@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScoreGate – Smart Assessment</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <h1 class="logo">Score<span>Gate</span></h1>
+    <button class="btn-outline">Get Started</button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Generate Terminal Assessment Sheets<br><span>In Seconds</span></h2>
+      <p>
+        Built for secondary school teachers.  
+        Automatic totals, averages, positions & performance ratings — all in one click.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-primary">Start Free</button>
+        <button class="btn-secondary">See How It Works</button>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <h3>✔ Smart Assessment Engine</h3>
+      <ul>
+        <li>Auto student rows</li>
+        <li>Instant total & average</li>
+        <li>Automatic positioning</li>
+        <li>Works for all subjects</li>
+      </ul>
+    </div>
+    
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <h2>Why Teachers Choose ScoreGate</h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span>⚡</span>
+        <h3>Lightning Fast</h3>
+        <p>Generate assessment sheets in seconds without manual calculations.</p>
+      </div>
+
+      <div class="feature-card">
+        <span>📊</span>
+        <h3>Accurate Results</h3>
+        <p>No errors. Automatic totals, averages and rankings.</p>
+      </div>
+
+      <div class="feature-card">
+        <span>🎓</span>
+        <h3>Any Subject</h3>
+        <p>Works seamlessly across the entire secondary school curriculum.</p>
+      </div>
+
+      <div class="feature-card">
+        <span>🏆</span>
+        <h3>Performance Rating</h3>
+        <p>Instantly know how well a class performed in any subject.</p>
+      </div>
+    </div>
+  </section>
+  <!-- STATS SECTION -->
+<section class="stats">
+  <div class="stat-card">
+    <h3><span class="count" data-target="12500">84</span>+</h3>
+    <p>Teachers Using ScoreGate</p>
+  </div>
+
+  <div class="stat-card">
+    <h3><span class="count" data-target="380000">200</span>+</h3>
+    <p>Result Sheets Generated</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>⭐⭐⭐⭐⭐</h3>
+    <p>Rated 5 Stars by Teachers</p>
+  </div>
+
+  <div class="stat-card">
+    <h3><span class="count" data-target="72">85</span>%</h3>
+    <p>Time Saved Per Term</p>
+  </div>
+</section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <section class="text_section">
+         <h2>Smarter Assessment Starts Here</h2>
+        <p>Save time. Reduce stress. Deliver professional results.</p>
+        <button id="btn" class="btn-primary large">Get Started Now</button>
+    </section>
+    <section class="img_section">
+        
+    </section>
+   
+  </section>
+
+  <footer>
+    <p>© 2026 ScoreGate. Smart Assessment. Zero Stress.</p>
+     <p class="power">Powered by E-Tech Softwares</p>
+  </footer>
+
+  <script>
+    var headerSubmitBtn1 = document.querySelector(".btn-outline")
+    var heroSubmitBtn = document.querySelector(".btn-primary")
+    var footerSubmitBtn = document.querySelector("#btn")
+    headerSubmitBtn1.addEventListener("click", open)
+    heroSubmitBtn.addEventListener("click", open)
+    footerSubmitBtn.addEventListener("click", open)
+
+    function open(){
+        window.location.href = "./login.html"
+    }
+  </script>
+</body>
+</html>

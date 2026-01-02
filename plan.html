@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body">
+    <style>
+        body{
+            overflow-y: auto;
+        }
+         .planDisplay{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: rgb(221, 216, 216);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 100vh;
+    }
+    .planCard{
+        background-color: white;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 10px;
+        padding: 20px 0px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+
+    }
+    .planCard ul{
+        align-self: flex-start;
+        margin-top: -10px;
+    }
+    .planCard h1{
+        margin-top: 5px;
+       @media (width >= 40em) {
+            font-size: 1.2rem;
+           
+        }
+        @media (width >= 60em) {
+            font-size: 2rem;
+            
+        }
+    }
+    .planCard h2{
+        margin-top: -5px;
+        color: purple;
+        font-size: 1.5rem;
+    }
+    .planCard p {
+        margin-top: -5px;
+       
+    }
+    .planCard h4{
+        margin-top: -5px;
+    }
+    .sub{
+         background-color: purple;
+         color: white;
+         padding: 5px 30px;
+         border-radius: 20px;
+         font-size: 1.0rem;
+         width: 60%;
+         text-align:center;
+    }
+    .planCard button{
+        padding: 10px 10px;
+        font-size: 1.0rem;
+        background-color:purple;
+        color: white;
+        border: none;
+        width: 60%;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .planCard li{
+        font-size: 1rem;
+        margin-top: 10px;
+        @media (width >= 40em) {
+            font-size: 1.2rem;
+           
+        }
+        @media (width >= 60em) {
+            font-size: 1.3rem;
+            
+        }
+        
+    }
+    .pop{
+        position:absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height:150vh;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+        transform: scale(0);
+        transition: 0.5s;
+
+    }
+       .span{
+        border: 5px solid purple;
+        width: 30px;
+        border-radius: 100%;
+        padding: 25px 10px;
+        border-top: 5px solid white;
+        animation: spin linear 2s infinite;
+    }
+    @-webkit-keyframes spin{
+        100%{-webkit-transform: rotate(360deg);}
+    }
+    .mini{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .loader{
+        transform: scale(0);
+    }
+    .confirmPayment{
+        background-color: rgba(221, 218, 218, 0.678);
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        padding: 20px;
+        border-radius: 10px;
+   
+    }
+    .plain{
+        align-self: flex-start;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 10px;
+
+    }
+    .plain span{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.3rem;
+    }
+    .plain h3{
+        font-size: 1.3rem;
+        
+    }
+    .confirmPayment button{
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        height: 40px;
+        border: none;
+        border-radius: 10px;
+        background-color: purple;
+        color: white;
+        outline: none;
+    }
+    .confirmPayment button span{
+        margin-left: 20px;
+    }
+    .show{
+        transform: scale(1);
+    }
+    .top{
+        display: flex;
+        width: 90%;
+        text-align: center;
+        padding: 0 30px;
+        margin: 0 30px;
+        justify-content: center;
+        align-items: center;
+        background-color: rebeccapurple;
+        color: white;
+        font-size: 1rem;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
+    .top h4{
+        text-align: center;
+        @media (width >= 30em) {
+            font-size: 1.3rem;
+        }
+        @media (width > 40em) {
+            font-size: 2rem;
+        }
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+        width: 100%;
+        padding: 20px;
+        justify-items: center;
+    }
+    .pop input{
+        padding: 8px;
+        border: 1px solid grey;
+        border-radius: 5px;
+    }
+    .showPop{
+        transform: scale(1);
+    }
+    .hideSomething{
+        transform: scale(0);
+    }
+    .error{
+        margin-top: -17px;
+        margin-left: 15px;
+        color: red;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        width: 100%;
+        margin-top: -30px;
+        margin-left: -30px;
+    }
+     .submitBtn{
+      padding: 0px 0.5rem ;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .submitBtn button{
+        background-color: purple;
+      padding: 10px 5rem;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      width: 60%;
+    }
+     #span{
+      border: 5px solid white;
+      border-radius: 50%;
+      padding: 15px;
+      border-top: 5px solid purple;
+      animation: load 0.5s infinite linear;
+      scale: 0;
+      transition: 0.5s;
+    }
+    @keyframes load {
+    to { 
+      transform: rotate(360deg);
+    }
+    }
+
+    </style>
+    <div class="planDisplay">
+        <div class="top">
+            <h4> Choose a plan that suit your </h4>
+        </div>
+        <div class="grid">
+           <div class="planCard">
+             <h1>Freemium Plan</h1>
+             <h2>&#8358; 30</h2>
+             <p class="sub"> &#8358; 30 per C.A Sheet</p>
+             <h4>Pay as you go</h4>
+             <p>Features</p>
+             <ul>
+                <li class="items">Pay as you use principle</li>
+                <li class="items">Lifetime access on subscription</li>
+                <li>Basic Technical Support</li>
+                <li>15 C.A Sheet minimun purchase</li>
+                <li>100 C.A Sheet maximum purchase</li>
+                <li>&#8358; 30 Per C.A Sheet</li>
+             </ul>
+             <button id="YearlyPlan">Purchase Plan</button>
+           </div>
+           <div class="planCard">
+             <h1>Premium Plan</h1>
+             <h2>&#8358; 29,999</h2>
+             <p class="sub">&#8358; 0 Per C.A Sheet</p>
+             <h4>One Time Payment, Lifetime Use</h4>
+             <p>Features</p>
+             <ul>
+                <li class="items">No periodic charges</li>
+                <li class="items">Lifetime access</li>
+                <li>One time payment</li>
+                <li>No C.A Sheet control. Be the master</li>
+                <li>Premium Technical Support</li>
+                <li>&#8358; 0 Per C.A Sheet</li>
+             </ul>
+             <button id="lifetimePlan">Purchase Plan</button>
+           </div>
+            <div class="pop">
+              <div class="loader">
+                    <div class="mini">
+                        <div class="span"></div>
+                    <p id="respons">Initializing Payment...</p>
+                    </div>
+                </div> 
+                <div class="confirmPayment">
+                    
+                    <h2>Confirm Payment</h2>
+                    <div class="plain">
+                        <h3>Plan</h3>
+                        <h3 id="plan">Monthly</h3>
+                    </div>
+                    <div class="plain">
+                        <h3>C.A Unit</h3>
+                        <input type="number" name="" id="caUnit" placeholder="N0 of units(15min)">
+                        
+                    </div>
+                    <div class="error">
+                        <p id="error"></p>
+                        </div>
+                    
+                    <div class="plain">
+                        <h3>Amount/Unit</h3>
+                        <span>&#8358;<h3 id="subPrice">30</h3></span>
+                    </div>
+                    <div class="plain">
+                        <h3>Total</h3>
+                        <span>&#8358;<h3 id="totalPrice">0</h3></span>
+                    </div>
+                     <div class="submitBtn">
+                        <button class=""  id="payBtn">Pay <span>&#8358</span> <h4 id="displayT">0</h4></button>
+                        <span class="" id="span"></span>
+                        </div>
+                    
+                </div>
+               
+           </div>
+            </div>
+           
+        </div>
+        
+    <script type="module">
+    import {updateDataPurchsedPlan} from "./backend.js"
+
+       var freemiumBtn = document.querySelector("#YearlyPlan")
+       var premiumBtn = document.querySelector("#lifetimePlan")
+       var pop = document.querySelector(".pop");
+       var plan = document.querySelector("#plan")
+       var inputUnit = document.querySelector("#caUnit")
+       var totalPrice = document.querySelector("#totalPrice")
+       var error = document.querySelector("#error");
+       var payBtn = document.querySelector("#payBtn");
+       var displayT = document.querySelector("#displayT")
+       var user = JSON.parse(localStorage.getItem("data"));
+       var spanLoad = document.querySelector("#span")
+       
+
+       
+
+       freemiumBtn.addEventListener("click",()=>{
+        var planName = "Freemium"
+        plan.textContent = planName
+        pop.classList.add("showPop")
+
+        // add the unit with price
+        inputUnit.addEventListener("input",()=>{
+            var inputUnitValue = Number(inputUnit.value);
+            if(inputUnitValue < 15 ){
+                
+                error.textContent = "Minimum of 15 units"
+                totalPrice.textContent = 0
+                displayT.textContent = 0
+                payBtn.disabled = true
+                return
+            }
+            payBtn.disabled = false
+            error.textContent = ""
+            var totalAmount = inputUnitValue * 30
+            totalPrice.textContent = totalAmount
+            displayT.textContent = totalAmount
+            payBtn.addEventListener("click",()=>{
+                    payWithPaystack(totalAmount,planName,inputUnitValue)
+                })
+
+            
+
+        })
+       })
+
+       premiumBtn.addEventListener("click",()=>{
+                var planName = "Premium"
+        plan.textContent = planName
+        pop.classList.add("showPop")
+
+        // add the unit with price
+        var inputUnitValue = 1000000000
+        inputUnit.type = "text"
+        inputUnit.value = "Unlimited"
+        inputUnit.disabled = true
+        payBtn.disabled = false
+         error.textContent = ""
+         var totalAmount = 29999
+            totalPrice.textContent = totalAmount
+            displayT.textContent = totalAmount
+            payBtn.addEventListener("click",()=>{
+                    payWithPaystack(totalAmount,planName,inputUnitValue)
+                })
+
+       })
+
+function payWithPaystack(amount,plan,units) {
+        spanLoad.style.scale = "1"
+    let handler = PaystackPop.setup({
+        key: "pk_live_d2d0170419093ac4377d4192ba52c2de83233e7e", // ✅ YOUR PUBLIC KEY
+        email: user.email , // required
+        amount: amount * 100, // ₦5,000 (Paystack uses kobo)
+        currency: "NGN",
+
+        ref: "REF_" + Math.floor(Math.random() * 1000000000),
+
+        callback: function (response) {
+            // ✅ This runs AFTER successful payment
+            console.log("Payment reference:", response.reference);
+
+            // send reference for verification
+            verifyPayment(response.reference,plan,units);
+        },
+
+        onClose: function () {
+            alert("Payment window closed");
+        }
+    });
+
+    handler.openIframe(); // 🔥 OPENS PAYSTACK POPUP
+}
+
+function verifyPayment(reference,plan,units) {
+    fetch("https://script.google.com/macros/s/AKfycbz95TCWcKQvdh7WxT_ZOC-3-B8OBCX1UgATHeLh49VtXDv6H5OfcmNBgiXEdWob_A/exec", {
+        method: "POST",
+        body: JSON.stringify({
+            reference: reference
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        if (data.data && data.data.status === "success") {
+            alert("Payment verified successfully");
+            planPurchaseUpdate(plan,units)
+
+        } else {
+            alert("Payment verification failed");
+            
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Verification error");
+    });
+}
+
+    async function planPurchaseUpdate(plan,units){
+            var response = await updateDataPurchsedPlan(plan,units,user.googleId)
+    }
+
+    </script>
+</body>
+</html>
