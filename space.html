@@ -335,7 +335,8 @@
     userName.textContent = user.username
     processBtn.addEventListener("click", ()=>{
       if(user.casheet < 1){
-        alert("No avaialable plan")
+       alert("Out Of C.A Sheet, Please purchase more sheet or upgrade to unlimited to enjoy more premium offers")
+        window.location.href = "plan.html"
         return
       }
       temBody.innerHTML = ""
@@ -524,4 +525,5 @@ function loadJspdf(data){
 </script>
 </body>
 </html>
+
           
