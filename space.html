@@ -455,7 +455,7 @@ function loadJspdf(data){
             docsPdf.text(xPosition,15,schoolHead);
             // school address text
             docsPdf.setFontSize(12);
-            var schoolAddress = "Elim camp Rukuba Road Jos Plateau state Nigeria"
+            var schoolAddress = "Creating Your C.A Sheet In Seconds"
              var textWidthAddress = docsPdf.getTextWidth(schoolAddress);
              var xPositionAddress = (pageWidth-textWidthAddress)/2;
             docsPdf.text(xPositionAddress,22,schoolAddress)
@@ -523,7 +523,7 @@ function loadJspdf(data){
       async function sendData(){
        var respons = await updateData(newCaSheet,user.googleId)
         if(respons == "successful"){
-           docsPdf.save('result.pdf');
+           docsPdf.save(`${data.subject}_${data.stuClass}_${data.session}_result.pdf`);
         }
       }
           
@@ -536,4 +536,5 @@ function loadJspdf(data){
 </html>
 
           
+
 
