@@ -393,22 +393,22 @@
 var sorted = sorthData([...students]);
 
 let lastScore = null;
-let position = 0;
-let skip = 0;
+let lastPosition = 0;
 
 sorted.forEach((student, index) => {
-  const score = student[1]; // 👈 change index to where score lives
+  const score = student[1]; // 👈 score index
 
-  if (score !== lastScore) {
-    position = index + 1;
-    position += skip;
-    skip = 0;
+  let position;
+  if (score === lastScore) {
+    position = lastPosition;          // same score → same position
   } else {
-    skip++;
+    position = index + 1;             // new score → next rank
   }
 
   student.push(getPositionString(position));
+
   lastScore = score;
+  lastPosition = position;
 });
           sorted.forEach((item)=>{
              totalScore += item[6]
@@ -552,6 +552,7 @@ function loadJspdf(data){
 </html>
 
           
+
 
 
 
