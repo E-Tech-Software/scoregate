@@ -407,7 +407,7 @@ let lastScore = null;
 let position = 0; // dense rank counter
 
 sorted.forEach((student) => {
-  const score = student[1]; // score index
+  const score = student[6]; // score index
 
   if (score !== lastScore) {
     position += 1;          // increment ONLY on new score
@@ -558,6 +558,7 @@ function loadJspdf(data){
 </html>
 
           
+
 
 
 
