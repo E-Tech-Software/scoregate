@@ -401,25 +401,21 @@
            })
            var totalScore = 0
            var average = 0
-var sorted = sorthData([...students]);
+ var sorted = sortData([...students]);
 
 let lastScore = null;
-let lastPosition = 0;
+let position = 0; // dense rank counter
 
-sorted.forEach((student, index) => {
-  const score = student[1]; // 👈 score index
+sorted.forEach((student) => {
+  const score = student[1]; // score index
 
-  let position;
-  if (score === lastScore) {
-    position = lastPosition;          // same score → same position
-  } else {
-    position = index + 1;             // new score → next rank
+  if (score !== lastScore) {
+    position += 1;          // increment ONLY on new score
   }
 
   student.push(getPositionString(position));
 
   lastScore = score;
-  lastPosition = position;
 });
           sorted.forEach((item)=>{
              totalScore += item[6]
@@ -447,10 +443,9 @@ sorted.forEach((student, index) => {
       
     })
 
-    function sorthData(data){
-      data.sort((a, b) => b[6] - a[6]);
-      return data
-    }
+function sortData(data) {
+  return data.sort((a, b) => b[6] - a[6]);
+}
 
 function getPositionString(pos) {
   let suffix = "th";
@@ -563,6 +558,7 @@ function loadJspdf(data){
 </html>
 
           
+
 
 
 
